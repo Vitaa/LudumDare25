@@ -19,8 +19,8 @@ var app = app || {};
 				},
 				{
 					url: 'img/object1.png',
-					startX: 600,
-					startY: 0,
+					x: 600,
+					y: 0,
 					width: 50,
 					height: 50,
 					score: 20,

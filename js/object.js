@@ -32,6 +32,7 @@ var app = app || {};
 
 	FlyObject.prototype.removeObject = function() {
 		this.context.clearRect( this.x, this.y, this.width, this.height );
+		clearTimeout(this.timer);
 	}
 
 	FlyObject.prototype.moveObject = function(dx, dy) {
@@ -40,7 +41,7 @@ var app = app || {};
 		console.log( this.y );
 
 		this.outOfBorder() ? this.moveCallback() :
-				setTimeout( function () { self.moveObject(1,1) }, self.velocity );
+				self.timer = setTimeout( function () { self.moveObject(1,1) }, self.velocity );
 	};
 
 	FlyObject.prototype.outOfBorder = function() {
