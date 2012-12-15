@@ -14,6 +14,7 @@ var app = app || {};
   		}
 	}
 
+
 	app.FlyObject = FlyObject;
 
 

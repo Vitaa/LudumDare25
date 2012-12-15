@@ -7,6 +7,10 @@ $(document).ready(function() {
         context = canvas.getContext("2d");
 
     var board = new app.Board(context);
-    board.addObject('img/object1.png');
+    board.startGame();
+
+    $(canvas).click(function(event) {
+        board.clickAtPosition(event.offsetX, event.offsetY);
+    });
         
 });
