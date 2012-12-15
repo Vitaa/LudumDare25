@@ -38,7 +38,6 @@ var app = app || {};
 	FlyObject.prototype.moveObject = function(dx, dy) {
 		var self = this;
 		this.redrawImage( dx, dy );
-		console.log( this.y );
 
 		this.outOfBorder() ? this.moveCallback() :
 				self.timer = setTimeout( function () { self.moveObject(1,1) }, self.velocity );

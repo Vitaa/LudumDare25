@@ -2,13 +2,15 @@ var app = app || {};
 
 (function() {
 
-	function Board(context) {
+	function Board(context, $score) {
 		this.context = context;
 		this.objects = [];
+		this.$score = $score;
 	}
 
 	Board.prototype.startGame = function() {
 		this.currentLevel = 0;
+		this.currentScore = 0;
 		this.nextLevel();
 	};
 
@@ -53,6 +55,8 @@ var app = app || {};
 	};
 
 	Board.prototype.addScore = function(score) {
+		this.currentScore += score;
+		this.$score.text(this.currentScore);
 	}
 
 	app.Board = Board;

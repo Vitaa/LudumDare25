@@ -1,3 +1,12 @@
+@font-face {
+	font-family: komikax;
+	src: url(../font/komikax.ttf);
+}
+@font-face {
+	font-family: sansita;
+	src: url(../font/SansitaOne.ttf);
+}
+
 body {
 	position: relative;
 }
@@ -6,7 +15,7 @@ body {
 	margin: auto;
 	position: relative;
 	display: block;
-	width: 850px;
+	width: 890px;
 }
 
 canvas {
@@ -15,5 +24,9 @@ canvas {
 
 .scores {
 	float: right;
-	
+	font-family: komikax;
+	font-size: 40px;
+	color: white;
+	text-shadow: 2px 1px 10px black;
+
 }
