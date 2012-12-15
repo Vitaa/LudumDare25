@@ -2,7 +2,6 @@ var app = app || {};
 
 (function() {
 
-
 	function FlyObject(context, info, moveCallback) {
 		this.velocity = info.velocity || 10;
 		this.context = context;
@@ -17,13 +16,12 @@ var app = app || {};
 
 		self.image = new Image();
 		self.image.src = info.url;
+		self.readyToDraw = false;
 
-		self.image.onload = function() {  // Событие onLoad, ждём момента пока загрузится изображение
-      		context.drawImage( self.image, self.x, self.y, self.width, self.height );  // Рисуем изображение от точки с координатами 0, 0
+		self.image.onload = function() { 
+  			self.readyToDraw = true;
+  			self.move();
   		}
-
-  		self.move();
-
 	};
 
 	FlyObject.prototype.move = function() {
@@ -37,21 +35,15 @@ var app = app || {};
 
 	FlyObject.prototype.moveObject = function(dx, dy) {
 		var self = this;
-		this.redrawImage( dx, dy );
+		this.x += dx;
+		this.y += dy;
 
-		this.outOfBorder() ? this.moveCallback() :
+		this.outOfBorder() ? this.moveCallback(this) :
 				self.timer = setTimeout( function () { self.moveObject(1,1) }, self.velocity );
 	};
 
 	FlyObject.prototype.outOfBorder = function() {
 		return this.x >= BOARD_WIDTH || this.y >= BOARD_HEIGHT;
-	};
-
-	FlyObject.prototype.redrawImage = function( dx, dy ) {
-		this.removeObject();
-		this.context.drawImage( this.image, this.x + dx, this.y + dy, this.width, this.height );
-		this.x += dx;
-		this.y += dy;
 	};
 
 	app.FlyObject = FlyObject;

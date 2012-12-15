@@ -2,10 +2,6 @@
 	font-family: komikax;
 	src: url(../font/komikax.ttf);
 }
-@font-face {
-	font-family: sansita;
-	src: url(../font/SansitaOne.ttf);
-}
 
 body {
 	position: relative;
@@ -19,7 +15,8 @@ body {
 }
 
 canvas {
-	background-color: red;
+	background: url(../img/level1/back.png);
+	cursor: url(../img/cursor.png) 27 27, crosshair;
 }
 
 .scores {
