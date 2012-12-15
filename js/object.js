@@ -3,19 +3,20 @@ var app = app || {};
 (function() {
 
 
-	function FlyObject(context, url, rect, velocity, moveCallback) {
-		this.velocity = velocity || 5;
+	function FlyObject(context, info, moveCallback) {
+		this.velocity = info.velocity || 5;
 		this.context = context;
-		this.x = rect.x;
-		this.y = rect.y;
-		this.width = rect.width;
-		this.height = rect.height;
+		this.x = info.x;
+		this.y = info.y;
+		this.width = info.width;
+		this.height = info.height;
 		this.moveCallback = moveCallback || function(){};
+		this.score = info.score;
 
 		var self = this;
 
 		self.image = new Image();
-		self.image.src = url;
+		self.image.src = info.url;
 
 		self.image.onload = function() {  // Событие onLoad, ждём момента пока загрузится изображение
       		context.drawImage( self.image, self.x, self.y, self.width, self.height );  // Рисуем изображение от точки с координатами 0, 0
@@ -33,7 +34,10 @@ var app = app || {};
 	}
 
 	FlyObject.prototype.removeObject = function() {
+
 		this.context.clearRect( this.x - 1, this.y - 1, this.width + 2, this.height + 2 );
+	//	this.context.clearRect( this.x, this.y, this.width, this.height );
+		clearTimeout(this.timer);
 	}
 
 	FlyObject.prototype.moveTo = function( x, y ) {
@@ -71,8 +75,6 @@ var app = app || {};
 		this.x += dx;
 		this.y += dy;
 	};
-
-
 
 	app.FlyObject = FlyObject;
 
