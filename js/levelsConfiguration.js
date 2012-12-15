@@ -13,8 +13,8 @@ var app = app || {};
 					y: 0,
 					width: 120,
 					height: 120,
-					score: 10,
-					velocity: 100,
+					score: 15,
+					velocity: 10,
 					duration: 0,
 				},
 				{
@@ -34,7 +34,7 @@ var app = app || {};
 					width: 50,
 					height: 50,
 					score: 20,
-					velocity: 50,
+					velocity: 10,
 					duration: 2000,
 				},
 				{

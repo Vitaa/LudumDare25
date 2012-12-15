@@ -7,7 +7,7 @@ var app = app || {};
 		this.objects = [];
 		this.$score = $score;
 	}
-
+	
 	Board.prototype.startGame = function() {
 		this.currentLevel = -1;
 		this.currentScore = 0;
@@ -43,7 +43,7 @@ var app = app || {};
 	};
 
 	Board.prototype.addObject = function(objInfo) {
-		var obj = new app.FlyObject(this.context, objInfo, this.removeObject);
+		var obj = new app.FlyObject(this.context, objInfo, $.proxy( this.removeObject, this ));
 		this.objects.push(obj);
 	};
 
