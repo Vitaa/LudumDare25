@@ -3,13 +3,14 @@ var app = app || {};
 (function() {
 
 
-	function FlyObject(context, url, rect, velocity) {
+	function FlyObject(context, url, rect, velocity, moveCallback) {
 		this.velocity = velocity || 10;
 		this.context = context;
 		this.x = rect.x;
 		this.y = rect.y;
 		this.width = rect.width;
 		this.height = rect.height;
+		this.moveCallback = moveCallback || function(){};
 
 		var self = this;
 
@@ -34,12 +35,25 @@ var app = app || {};
 
 	FlyObject.prototype.moveObject = function(dx, dy) {
 		var self = this;
+		this.redrawImage( dx, dy );
+		console.log( this.y );
+
+		this.outOfBorder() ? this.moveCallback() :
+				setTimeout( function () { self.moveObject(1,1) }, self.velocity );
+	};
+
+	FlyObject.prototype.outOfBorder = function() {
+		return this.x >= BOARD_WIDTH || this.y >= BOARD_HEIGHT;
+	};
+
+	FlyObject.prototype.redrawImage = function( dx, dy ) {
 		this.removeObject();
 		this.context.drawImage( this.image, this.x + dx, this.y + dy, this.width, this.height );
 		this.x += dx;
 		this.y += dy;
-		setTimeout( function () { self.moveObject(1,1) }, self.velocity );
 	};
+
+
 
 	app.FlyObject = FlyObject;
 
