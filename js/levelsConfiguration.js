@@ -81,6 +81,16 @@ var app = app || {};
 					score: 5,
 					velocity: 80,
 					duration: 1000,
+				},
+				{
+					url: 'img/level2/skunk.png',
+					x: 0,
+					y: 300,
+					width: 90,
+					height: 90,
+					score: -20,
+					velocity: 80,
+					duration: 1000,
 				}
 			]
 		}

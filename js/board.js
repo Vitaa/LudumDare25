@@ -15,12 +15,11 @@ var app = app || {};
 	};
 
 	Board.prototype.nextLevel = function() {
-		if (this.currentLevel++ < app.levels.length) {
+		if (++this.currentLevel < app.levels.length) {
 
 			this.lastObjectAdded = false;
 			var levelInfo = app.levels[this.currentLevel];
 			this.addNewObjects(levelInfo.objects);
-
 
 			this.draw();
 		}
