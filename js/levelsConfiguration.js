@@ -14,7 +14,7 @@ var app = app || {};
 					width: 120,
 					height: 120,
 					score: 15,
-					velocity: 10,
+					velocity: 3,
 					duration: 0,
 				},
 				{
@@ -24,7 +24,7 @@ var app = app || {};
 					width: 100,
 					height: 100,
 					score: 5,
-					velocity: 80,
+					velocity: 8,
 					duration: 1000,
 				},
 				{
@@ -34,7 +34,7 @@ var app = app || {};
 					width: 50,
 					height: 50,
 					score: 20,
-					velocity: 10,
+					velocity: 3,
 					duration: 2000,
 				},
 				{
@@ -44,7 +44,7 @@ var app = app || {};
 					width: 10,
 					height: 10,
 					score: 50,
-					velocity: 70,
+					velocity: 50,
 					duration: 3000,
 				},
 				{
@@ -54,7 +54,7 @@ var app = app || {};
 					width: 70,
 					height: 70,
 					score: 17,
-					velocity: 10,
+					velocity: 3,
 					duration: 4000,
 				}
 			]
@@ -64,33 +64,35 @@ var app = app || {};
 			[
 				{
 					url: 'img/level2/elk.png',
-					x: 0,
+					x: 680,
 					y: 0,
 					width: 120,
 					height: 120,
 					score: 10,
-					velocity: 100,
+					velocity: 10,
 					duration: 0,
+					toLeft: true,
 				},
 				{
 					url: 'img/level2/sheep.png',
-					x: 0,
+					x: 700,
 					y: 100,
 					width: 96,
 					height: 80,
 					score: 5,
-					velocity: 80,
-					duration: 1000,
+					velocity: 8,
+					duration: 500,
+					toLeft: true,
 				},
 				{
 					url: 'img/level2/skunk.png',
-					x: 0,
-					y: 300,
+					x: 300,
+					y: 0,
 					width: 90,
 					height: 90,
 					score: -20,
-					velocity: 80,
-					duration: 1000,
+					velocity: 4,
+					duration: 1300,
 				}
 			]
 		}

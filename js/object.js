@@ -11,6 +11,7 @@ var app = app || {};
 		this.height = info.height;
 		this.moveCallback = moveCallback || function(){};
 		this.score = info.score;
+		this.toLeft = info.toLeft || false;
 
 		var self = this;
 
@@ -25,8 +26,20 @@ var app = app || {};
 	};
 
 	FlyObject.prototype.move = function() {
+		this.toLeft ? this.moveToLeft() : this.moveToRight();
+	}
+
+	FlyObject.prototype.moveToRight = function() {
 		var min = -30, max = 150;
 		var vectorX = Math.floor(Math.random() * (max - min + 1)) + min;
+		var vectorY = Math.floor(Math.random() * (max - min + 1)) + min;
+		this.moveTo( this.x + vectorX, this.y + vectorY);
+	}
+
+	FlyObject.prototype.moveToLeft = function() {
+		var min = -150, max = 30;
+		var vectorX = Math.floor(Math.random() * (max - min + 1)) + min;
+		min = -30, max = 150;
 		var vectorY = Math.floor(Math.random() * (max - min + 1)) + min;
 		this.moveTo( this.x + vectorX, this.y + vectorY);
 	}
@@ -34,7 +47,6 @@ var app = app || {};
 	FlyObject.prototype.removeObject = function() {
 
 		this.context.clearRect( this.x - 1, this.y - 1, this.width + 2, this.height + 2 );
-	//	this.context.clearRect( this.x, this.y, this.width, this.height );
 		clearTimeout(this.timer);
 	}
 
@@ -61,7 +73,7 @@ var app = app || {};
 	};
 
 	FlyObject.prototype.outOfBorder = function() {
-		return this.x >= BOARD_WIDTH || this.y >= BOARD_HEIGHT || this.x < 0 || this.y < 0;
+		return this.x >= BOARD_WIDTH || this.y >= BOARD_HEIGHT || this.x + this.width < 0 || this.y + this.height < 0;
 	};
 
 
