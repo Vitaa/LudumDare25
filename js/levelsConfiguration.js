@@ -9,8 +9,8 @@ var app = app || {};
 			[
 				{
 					url: 'img/object1.png',
-					startX: 0,
-					startY: 0,
+					x: 0,
+					y: 0,
 					width: 120,
 					height: 120,
 					score: 10,

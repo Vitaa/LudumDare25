@@ -30,12 +30,13 @@ var app = app || {};
 	};
 
 	Board.prototype.addObject = function(objInfo) {
-		var obj = new app.FlyObject(this.context, objInfo.url);
+		var obj = new app.FlyObject(this.context, objInfo, this.removeObject);
 		this.objects.push(obj);
 	};
 
 	Board.prototype.removeObject = function(object) {
 		this.objects = _.without(this.objects, object);
+		object.removeObject();
 	};
 
 	Board.prototype.clickAtPosition = function(x, y) {
@@ -44,7 +45,6 @@ var app = app || {};
 			if ((x >= object.x && x <= object.x + object.width) &&
 				(y >= object.y && y <= object.y + object.height)) {
 				
-				object.removeObject();
 				this.addScore(object.score);
 				this.removeObject(object);
 				break;
@@ -53,8 +53,7 @@ var app = app || {};
 	};
 
 	Board.prototype.addScore = function(score) {
-		
-	};
+	}
 
 	app.Board = Board;
 
