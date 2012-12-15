@@ -7,7 +7,7 @@ $(document).ready(function() {
         context = canvas.getContext("2d"),
         $score = $(".scores");
 
-    var board = new app.Board(context, $score);
+    var board = new app.Board(context, $score, $(canvas));
     board.startGame();
 
     $(canvas).click(function(event) {

@@ -17,7 +17,7 @@ var app = app || {};
 					velocity: 3,
 					duration: 0,
 				},
-				{
+			/*	{
 					url: 'img/level1/mammoth.png',
 					x: 0,
 					y: 100,
@@ -56,7 +56,7 @@ var app = app || {};
 					score: 17,
 					velocity: 3,
 					duration: 4000,
-				}
+				}*/
 			]
 		},
 		{

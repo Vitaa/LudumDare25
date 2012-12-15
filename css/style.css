@@ -19,6 +19,14 @@ canvas {
 	cursor: url(../img/cursor.png) 27 27, crosshair;
 }
 
+/*canvas.level1 {
+	background: url(../img/level1/back.png);
+}*/
+
+canvas.level2 {
+	background: url(../img/level2/back.png);
+}
+
 .scores {
 	float: right;
 	font-family: komikax;

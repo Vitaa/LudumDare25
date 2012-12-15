@@ -2,23 +2,28 @@ var app = app || {};
 
 (function() {
 
-	function Board(context, $score) {
+	function Board(context, $score, $back) {
 		this.context = context;
 		this.objects = [];
 		this.$score = $score;
+		this.$back = $back;
 	}
 	
 	Board.prototype.startGame = function() {
-		this.currentLevel = -1;
+		this.currentLevel = 0;
 		this.currentScore = 0;
 		this.nextLevel();
 	};
 
 	Board.prototype.nextLevel = function() {
-		if (++this.currentLevel < app.levels.length) {
+		if (this.currentLevel < app.levels.length) {
+
+			this.$back.removeClass("level" + this.currentLevel);
+			this.currentLevel++;
+			this.$back.addClass("level" + this.currentLevel);
 
 			this.lastObjectAdded = false;
-			var levelInfo = app.levels[this.currentLevel];
+			var levelInfo = app.levels[this.currentLevel-1];
 			this.addNewObjects(levelInfo.objects);
 
 			this.draw();
