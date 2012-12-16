@@ -8,6 +8,8 @@ var app = app || {};
 		this.$board = $board;
 		this.$scoresLbl = $scoresLbl;
 		this.$back = $back;
+
+		this.$alert = $(".ready");
 	}
 	
 	Board.prototype.startGame = function() {
@@ -17,30 +19,46 @@ var app = app || {};
 		this.showReady();
 	};
 
+	Board.prototype.showAlert = function(text) {
+		this.$alert.text(text);
+		var def = $.Deferred();
+
+		this.$alert.fadeIn(300).delay(300).fadeOut(300, function(){
+			def.resolve();
+		});
+
+		return def.promise();
+	};
+
 	Board.prototype.showReady = function() {
-		var $ready = $(".ready");
 		var self = this;
-		$ready.fadeIn(300).delay(300).fadeOut(300, function() {
-			$ready.text(2).fadeIn(300).delay(300).fadeOut(300, function() {
-			$ready.text(1).fadeIn(300).delay(300).fadeOut(300, function(){
-				self.nextLevel();
+		self.showAlert(3).done(function(){
+			self.showAlert(2).done(function(){
+				self.showAlert(1).done(function(){
+					self.nextLevel();
+				});
 			});
-		});
-		});
+		})
 	};
 
 	Board.prototype.nextLevel = function() {
 		if (this.currentLevel < app.levels.length) {
 
-			this.$back.removeClass("level" + this.currentLevel);
-			this.currentLevel++;
-			this.$back.addClass("level" + this.currentLevel);
+			var self = this;
+			self.$back.removeClass("level" + self.currentLevel);
+			self.currentLevel++;
+			self.$back.addClass("level" + self.currentLevel);
+			self.showAlert("Level " + (self.currentLevel)).done(function(){
+				
 
-			this.lastObjectAdded = false;
-			var levelInfo = app.levels[this.currentLevel-1];
-			this.addNewObjects(levelInfo.objects);
+				self.lastObjectAdded = false;
+				var levelInfo = app.levels[self.currentLevel-1];
+				self.addNewObjects(levelInfo.objects);
 
-			this.draw();
+				self.draw();
+			});
+
+			
 		}
 	};
 

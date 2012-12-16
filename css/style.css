@@ -63,8 +63,8 @@ canvas.level2 {
 	top: 120px;
 	font-family: komikax;
 	font-size: 40px;
-	color: #E02205;
-	text-shadow: 1px 1px 1px grey;
+	color: #cbefaa;
+	text-shadow: 2px 1px 3px grey;
 }
 .score {
 	position: absolute;
@@ -93,10 +93,10 @@ canvas.level2 {
 	font-family: komikax;
 	font-size: 100px;
 	top: 320px;
-	left: 450px;
-	width: 300px;
+	left: 350px;
+	width: 500px;
 	text-align: center;
+	color: orange;
 	display: none;
-	color: #706e6e;
 }
 
