@@ -13,7 +13,7 @@ form, h1, h2, button, label, a, img {
 /* Image preloading */
 body:after {
 content:url(../img/cursor.png) url(../img/girl.png) url(../img/room.png) url(../img/level1/back.png) 
-url(../img/level2/back.png);
+url(../img/level2/back.png) url(../img/level3/back.png) url(../img/bang1.png) url(../img/bang2.png) url(../img/bang3.png);
 display: none;
 }
 
