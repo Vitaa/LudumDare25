@@ -23,7 +23,7 @@ var app = app || {};
 		this.$alert.text(text);
 		var def = $.Deferred();
 
-		this.$alert.fadeIn(300).delay(300).fadeOut(300, function(){
+		this.$alert.fadeIn(400).delay(500).fadeOut(400, function(){
 			def.resolve();
 		});
 
@@ -107,10 +107,19 @@ var app = app || {};
 		}
 	};
 
-	Board.prototype.addScore = function(score, x, y) {
-		this.currentScore += score;
-		this.$scoresLbl.text(this.currentScore);
+	Board.prototype.showBangAnimation = function(bad, x, y) {
+		var $bang = $("<div></div>").addClass("bang");
+		$bang.toggleClass( "bad", bad );
+		
+		this.$board.append($bang);
+		$bang.css({'top': (y-50)+'px', 'left':(x-60)+'px'});
+		
+		$bang.show().delay(300).fadeOut(500, function(){
+			$(this).remove();
+		});
+	};
 
+	Board.prototype.showScorePopup = function(score, x, y) {
 		var $score = $("<div></div>").addClass("score");
 		$score.text( (score>0)?("+"+score):score );
 		$score.toggleClass( "minus", score<0 );
@@ -118,10 +127,21 @@ var app = app || {};
 		this.$board.append($score);
 		$score.css({'top': (y - $score.outerHeight()/2)+'px', 'left':(x - 50 )+'px'});
 		
-		$score.show().delay(300).fadeOut(500, function(){
+		$score.fadeIn(300).delay(300).fadeOut(500, function(){
 			$(this).remove();
 		});
-	
+	};
+
+	Board.prototype.addScore = function(score, x, y) {
+		this.currentScore += score;
+		this.$scoresLbl.text(this.currentScore);
+
+		this.showBangAnimation(score<0, x, y);
+		
+		var self = this;
+		setTimeout(function(){
+			self.showScorePopup(score, x, y);
+		}, 600);
 	};
 
 	Board.prototype.draw = function() {

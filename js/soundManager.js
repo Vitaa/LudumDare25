@@ -2,7 +2,10 @@ var app = app || {};
 
 (function() {
 
-	function SoundManager() {		
+	function SoundManager() {	
+		new Audio("sounds/gunshot.wav");
+		new Audio("sounds/cat.wav");
+		new Audio("sounds/scream.wav");	
 	}
 
 	SoundManager.prototype.playGunshot = function() {
