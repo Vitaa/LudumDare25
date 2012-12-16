@@ -41,6 +41,11 @@ var app = app || {};
 		})
 	};
 
+	Board.prototype.gameOver = function() {
+		this.$alert.text("Game over!");
+		this.$alert.fadeIn(300);
+	};
+
 	Board.prototype.nextLevel = function() {
 		if (this.currentLevel < app.levels.length) {
 
@@ -56,9 +61,10 @@ var app = app || {};
 				self.addNewObjects(levelInfo.objects);
 
 				self.draw();
-			});
-
-			
+			});	
+		}
+		else {
+			this.gameOver();
 		}
 	};
 

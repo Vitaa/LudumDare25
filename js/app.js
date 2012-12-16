@@ -12,6 +12,7 @@ $(document).ready(function() {
     board.startGame();
 
     $(canvas).click(function(event) {
+        app.soundManager.playGunshot();
         board.clickAtPosition(event.offsetX, event.offsetY);
     });
         

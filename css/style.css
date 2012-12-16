@@ -92,7 +92,8 @@ canvas.level2 {
 	position: absolute;
 	font-family: komikax;
 	font-size: 100px;
-	top: 320px;
+	line-height: 110px;
+	top: 340px;
 	left: 350px;
 	width: 500px;
 	text-align: center;
