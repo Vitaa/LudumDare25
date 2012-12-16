@@ -13,6 +13,7 @@ var app = app || {};
 		this.score = info.score;
 		this.toLeft = info.toLeft || false;
 		this.flyFlag = info.fly || false;
+		this.toTop = info.toTop || false;
 
 		var self = this;
 
@@ -37,17 +38,34 @@ var app = app || {};
 	};
 
 	FlyObject.prototype.run = function() {
-		this.toLeft ? this.runToLeft() : this.runToRight();
+		if ( !this.toTop ) {
+			this.toLeft ? this.runToLeftBottom() : this.runToRightBottom();
+		} else {
+			this.toLeft ? this.runToLeftTop() : this.runToRightTop();
+		}
 	};
 
-	FlyObject.prototype.runToRight = function() {
-		var min = -30, max = 150;
-		this.moveLimited(min, max, min, max);
+	FlyObject.prototype.runToRightBottom = function() {
+		var minH = -30, maxH = 150,
+			minV = -30, maxV = 80;
+		this.moveLimited(minH, maxH, minV, maxV);
 	};
 
-	FlyObject.prototype.runToLeft = function() {
+	FlyObject.prototype.runToRightTop = function() {
+		var minH = -30, maxH = 150,
+			minV = -80, maxV = 30;
+		this.moveLimited(minH, maxH, minV, maxV);
+	};
+
+	FlyObject.prototype.runToLeftTop = function() {
+		var minH = -100, maxH = 20,
+			minV = -100, maxV = 30;
+		this.moveLimited(minH, maxH, minV, maxV);
+	};
+
+	FlyObject.prototype.runToLeftBottom = function() {
 		var minH = -150, maxH = 30,
-			minV = -30, maxV = 150;
+			minV = -30, maxV = 80;
 		this.moveLimited(minH, maxH, minV, maxV);
 	};
 

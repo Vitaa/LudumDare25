@@ -24,6 +24,7 @@ display: none;
 
 body {
 	position: relative;
+	margin: 0;
 }
 
 .room {
