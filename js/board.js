@@ -2,10 +2,10 @@ var app = app || {};
 
 (function() {
 
-	function Board(context, $scoresLbl, $score, $back) {
+	function Board(context, $scoresLbl, $board, $back) {
 		this.context = context;
 		this.objects = [];
-		this.$score = $score;
+		this.$board = $board;
 		this.$scoresLbl = $scoresLbl;
 		this.$back = $back;
 	}
@@ -73,10 +73,16 @@ var app = app || {};
 		this.currentScore += score;
 		this.$scoresLbl.text(this.currentScore);
 
-		this.$score.text( (score>0)?("+"+score):score );
-		this.$score.css({'top': y+'px', 'left': x+'px'});
-		this.$score.toggleClass( "minus", score<0 );
-		this.$score.show().delay(300).fadeOut(500);
+		var $score = $("<div></div>").addClass("score");
+		$score.text( (score>0)?("+"+score):score );
+		$score.css({'top': y+'px', 'left': x+'px'});
+		$score.toggleClass( "minus", score<0 );
+		
+		this.$board.append($score);
+		
+		$score.show().delay(300).fadeOut(500, function(){
+			$(this).remove();
+		});
 	
 	};
 
