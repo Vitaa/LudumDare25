@@ -8,26 +8,63 @@ var app = app || {};
 		this.$board = $board;
 		this.$scoresLbl = $scoresLbl;
 		this.$back = $back;
+
+		this.$alert = $(".ready");
 	}
 	
 	Board.prototype.startGame = function() {
 		this.currentLevel = 0;
 		this.currentScore = 0;
-		this.nextLevel();
+
+		this.showReady();
+	};
+
+	Board.prototype.showAlert = function(text) {
+		this.$alert.text(text);
+		var def = $.Deferred();
+
+		this.$alert.fadeIn(300).delay(300).fadeOut(300, function(){
+			def.resolve();
+		});
+
+		return def.promise();
+	};
+
+	Board.prototype.showReady = function() {
+		var self = this;
+		self.showAlert(3).done(function(){
+			self.showAlert(2).done(function(){
+				self.showAlert(1).done(function(){
+					self.nextLevel();
+				});
+			});
+		})
+	};
+
+	Board.prototype.gameOver = function() {
+		this.$alert.text("Game over!");
+		this.$alert.fadeIn(300);
 	};
 
 	Board.prototype.nextLevel = function() {
 		if (this.currentLevel < app.levels.length) {
 
-			this.$back.removeClass("level" + this.currentLevel);
-			this.currentLevel++;
-			this.$back.addClass("level" + this.currentLevel);
+			var self = this;
+			self.$back.removeClass("level" + self.currentLevel);
+			self.currentLevel++;
+			self.$back.addClass("level" + self.currentLevel);
+			self.showAlert("Level " + (self.currentLevel)).done(function(){
+				
 
-			this.lastObjectAdded = false;
-			var levelInfo = app.levels[this.currentLevel-1];
-			this.addNewObjects(levelInfo.objects);
+				self.lastObjectAdded = false;
+				var levelInfo = app.levels[self.currentLevel-1];
+				self.addNewObjects(levelInfo.objects);
 
-			this.draw();
+				self.draw();
+			});	
+		}
+		else {
+			this.gameOver();
 		}
 	};
 
@@ -78,7 +115,7 @@ var app = app || {};
 		$score.toggleClass( "minus", score<0 );
 		
 		this.$board.append($score);
-		$score.css({'top': (y - $score.outerHeight()/2)+'px', 'left':(x - $score.outerWidth()/2 )+'px'});
+		$score.css({'top': (y - $score.outerHeight()/2)+'px', 'left':(x - 50 )+'px'});
 		
 		$score.show().delay(300).fadeOut(500, function(){
 			$(this).remove();
