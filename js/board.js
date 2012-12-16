@@ -75,10 +75,10 @@ var app = app || {};
 
 		var $score = $("<div></div>").addClass("score");
 		$score.text( (score>0)?("+"+score):score );
-		$score.css({'top': y+'px', 'left': x+'px'});
 		$score.toggleClass( "minus", score<0 );
 		
 		this.$board.append($score);
+		$score.css({'top': (y - $score.outerHeight()/2)+'px', 'left':(x - $score.outerWidth()/2 )+'px'});
 		
 		$score.show().delay(300).fadeOut(500, function(){
 			$(this).remove();
