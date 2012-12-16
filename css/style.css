@@ -54,6 +54,9 @@ canvas {
 canvas.level2 {
 	background: url(../img/level2/back.png);
 }
+canvas.level3 {
+	background: url(../img/level3/back.png);
+}
 
 .scores {
 	position: absolute;
