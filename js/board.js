@@ -110,6 +110,10 @@ var app = app || {};
 	Board.prototype.showBangAnimation = function(bad, x, y) {
 		var $bang = $("<div></div>").addClass("bang");
 		$bang.toggleClass( "bad", bad );
+		if (!bad) {
+			var rand = Math.round(Math.random()*10);
+			$bang.addClass( (rand % 2 == 0)?"good1":"good2" );
+		}
 		
 		this.$board.append($bang);
 		$bang.css({'top': (y-50)+'px', 'left':(x-60)+'px'});

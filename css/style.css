@@ -79,6 +79,7 @@ canvas.level3 {
 	width: 100px;
 	text-shadow: 2px 2px 3px black;
 	text-align: center;
+	pointer-events:none;
 }
 .score.minus {
 	color: #e3281b;
@@ -110,8 +111,14 @@ canvas.level3 {
 	position: absolute;
 	width: 120px;
 	height: 100%;
-	background: url(../img/bang1.png) no-repeat;
 	display: none;
+	pointer-events:none;
+}
+.bang.good1 {
+	background: url(../img/bang3.png) no-repeat;
+}
+.bang.good2 {
+	background: url(../img/bang1.png) no-repeat;
 }
 .bang.bad {
 	background: url(../img/bang2.png) no-repeat;
