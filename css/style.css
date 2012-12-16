@@ -33,5 +33,15 @@ canvas.level2 {
 	font-size: 40px;
 	color: white;
 	text-shadow: 2px 1px 10px black;
-
 }
+.score {
+	position: absolute;
+	font-family: komikax;
+	font-size: 30px;
+	display:none;
+	color: #49dc6b;
+}
+.score.minus {
+	color: #e3281b;
+}
+

@@ -5,9 +5,10 @@ $(document).ready(function() {
  
     var canvas = $("#game-canvas").get(0),
         context = canvas.getContext("2d"),
-        $score = $(".scores");
+        $scoreLbl = $(".scores"),
+        $score = $(".score");
 
-    var board = new app.Board(context, $score, $(canvas));
+    var board = new app.Board(context, $scoreLbl, $score, $(canvas));
     board.startGame();
 
     $(canvas).click(function(event) {
