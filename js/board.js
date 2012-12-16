@@ -2,10 +2,11 @@ var app = app || {};
 
 (function() {
 
-	function Board(context, $score, $back) {
+	function Board(context, $scoresLbl, $board, $back) {
 		this.context = context;
 		this.objects = [];
-		this.$score = $score;
+		this.$board = $board;
+		this.$scoresLbl = $scoresLbl;
 		this.$back = $back;
 	}
 	
@@ -61,16 +62,28 @@ var app = app || {};
 			if ((x >= object.x && x <= object.x + object.width) &&
 				(y >= object.y && y <= object.y + object.height)) {
 				
-				this.addScore(object.score);
+				this.addScore( object.score, x, y );
 				this.removeObject(object);
 				break;
 			}
 		}
 	};
 
-	Board.prototype.addScore = function(score) {
+	Board.prototype.addScore = function(score, x, y) {
 		this.currentScore += score;
-		this.$score.text(this.currentScore);
+		this.$scoresLbl.text(this.currentScore);
+
+		var $score = $("<div></div>").addClass("score");
+		$score.text( (score>0)?("+"+score):score );
+		$score.toggleClass( "minus", score<0 );
+		
+		this.$board.append($score);
+		$score.css({'top': (y - $score.outerHeight()/2)+'px', 'left':(x - $score.outerWidth()/2 )+'px'});
+		
+		$score.show().delay(300).fadeOut(500, function(){
+			$(this).remove();
+		});
+	
 	};
 
 	Board.prototype.draw = function() {
