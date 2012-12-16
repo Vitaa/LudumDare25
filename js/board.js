@@ -13,7 +13,20 @@ var app = app || {};
 	Board.prototype.startGame = function() {
 		this.currentLevel = 0;
 		this.currentScore = 0;
-		this.nextLevel();
+
+		this.showReady();
+	};
+
+	Board.prototype.showReady = function() {
+		var $ready = $(".ready");
+		var self = this;
+		$ready.fadeIn(300).delay(300).fadeOut(300, function() {
+			$ready.text(2).fadeIn(300).delay(300).fadeOut(300, function() {
+			$ready.text(1).fadeIn(300).delay(300).fadeOut(300, function(){
+				self.nextLevel();
+			});
+		});
+		});
 	};
 
 	Board.prototype.nextLevel = function() {
@@ -78,7 +91,7 @@ var app = app || {};
 		$score.toggleClass( "minus", score<0 );
 		
 		this.$board.append($score);
-		$score.css({'top': (y - $score.outerHeight()/2)+'px', 'left':(x - $score.outerWidth()/2 )+'px'});
+		$score.css({'top': (y - $score.outerHeight()/2)+'px', 'left':(x - 50 )+'px'});
 		
 		$score.show().delay(300).fadeOut(500, function(){
 			$(this).remove();
