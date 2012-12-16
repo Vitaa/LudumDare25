@@ -35,3 +35,9 @@ canvas.level2 {
 	text-shadow: 2px 1px 10px black;
 
 }
+
+.girl {
+	width: 240px;
+	height: 240px;
+	background: url(../img/girl.png);
+}
