@@ -87,7 +87,7 @@ var app = app || {};
 		this.$scoresLbl.text(this.currentScore);
 
 		var $score = $("<div></div>").addClass("score");
-		$score.text( (score>0)?(" +"+score):" "+score );
+		$score.text( (score>0)?("+"+score):score );
 		$score.toggleClass( "minus", score<0 );
 		
 		this.$board.append($score);
