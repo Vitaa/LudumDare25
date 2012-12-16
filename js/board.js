@@ -101,6 +101,7 @@ var app = app || {};
 				
 				this.addScore( object.score, x, y );
 				this.removeObject(object);
+				app.soundManager.playScream();
 				break;
 			}
 		}
