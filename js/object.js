@@ -12,6 +12,7 @@ var app = app || {};
 		this.moveCallback = moveCallback || function(){};
 		this.score = info.score;
 		this.toLeft = info.toLeft || false;
+		this.flyFlag = info.fly || false;
 
 		var self = this;
 
@@ -25,30 +26,56 @@ var app = app || {};
   		}
 	};
 
-	FlyObject.prototype.move = function() {
-		this.toLeft ? this.moveToLeft() : this.moveToRight();
-	}
-
-	FlyObject.prototype.moveToRight = function() {
-		var min = -30, max = 150;
-		var vectorX = Math.floor(Math.random() * (max - min + 1)) + min;
-		var vectorY = Math.floor(Math.random() * (max - min + 1)) + min;
-		this.moveTo( this.x + vectorX, this.y + vectorY);
-	}
-
-	FlyObject.prototype.moveToLeft = function() {
-		var min = -150, max = 30;
-		var vectorX = Math.floor(Math.random() * (max - min + 1)) + min;
-		min = -30, max = 150;
-		var vectorY = Math.floor(Math.random() * (max - min + 1)) + min;
-		this.moveTo( this.x + vectorX, this.y + vectorY);
-	}
-
 	FlyObject.prototype.removeObject = function() {
 
 		this.context.clearRect( this.x - 1, this.y - 1, this.width + 2, this.height + 2 );
 		clearTimeout(this.timer);
-	}
+	};
+
+	FlyObject.prototype.move = function() {
+		this.flyFlag ? this.fly() : this.run();
+	};
+
+	FlyObject.prototype.run = function() {
+		this.toLeft ? this.runToLeft() : this.runToRight();
+	};
+
+	FlyObject.prototype.runToRight = function() {
+		var min = -30, max = 150;
+		this.moveLimited(min, max, min, max);
+	};
+
+	FlyObject.prototype.runToLeft = function() {
+		var minH = -150, maxH = 30,
+			minV = -30, maxV = 150;
+		this.moveLimited(minH, maxH, minV, maxV);
+	};
+
+	FlyObject.prototype.fly = function() {
+		this.toLeft ? this.flyToLeft() : this.flyToRight();
+	};
+
+	FlyObject.prototype.flyToRight = function() {
+		var minH = -30, maxH = 150,
+			minV = -20, maxV = 30;
+		this.moveLimited(minH, maxH, minV, maxV);
+	};
+
+	FlyObject.prototype.flyToLeft = function() {
+		var minH = -150, maxH = 30,
+			minV = -20, maxV = 30;
+		this.moveLimited(minH, maxH, minV, maxV);
+	};
+
+	FlyObject.prototype.moveLimited = function(minH, maxH, minV, maxV) {
+		var vectorX = this.getMoveValue( minH, maxH );
+		var vectorY = this.getMoveValue( minV, maxV );
+		this.moveTo( this.x + vectorX, this.y + vectorY);
+	};	
+
+	FlyObject.prototype.getMoveValue = function(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	};
 
 	FlyObject.prototype.moveTo = function( x, y ) {
 		var dx = x - this.x,

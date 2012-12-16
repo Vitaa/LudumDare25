@@ -93,7 +93,20 @@ var app = app || {};
 					score: -20,
 					velocity: 4,
 					duration: 1300,
-				}
+				},
+				{
+					url: 'img/level2/butterfly.png',
+					x: 800,
+					y: 100,
+					width: 54,
+					height: 54,
+					score: 10,
+					velocity: 4,
+					duration: 1000,
+					fly: true,
+					toLeft: true,
+				},
+
 			]
 		}
 	];
