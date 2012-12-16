@@ -18,7 +18,7 @@ var app = app || {};
 					toLeft: true,
 					duration: 0,
 				},
-				/*{
+				{
 					url: 'img/level1/mammoth.png',
 					x: 0,
 					y: 200,
@@ -29,7 +29,7 @@ var app = app || {};
 					duration: 1000,
 				},
 				{
-					url: 'img/level1/dino.png',
+					url: 'img/level1/dinoRight.png',
 					x: 0,
 					y: 250,
 					width: 70,
@@ -40,7 +40,7 @@ var app = app || {};
 					
 				},
 				{
-					url: 'img/level1/mammoth.png',
+					url: 'img/level1/mammothLeft.png',
 					x: 730,
 					y: 200,
 					width: 70,
@@ -51,7 +51,7 @@ var app = app || {};
 					duration: 3000,
 				},
 				{
-					url: 'img/level1/mammoth.png',
+					url: 'img/level1/mammothLeft.png',
 					x: 785,
 					y: 50,
 					width: 15,
@@ -83,7 +83,7 @@ var app = app || {};
 					duration: 7000,
 				},
 				{
-					url: 'img/level1/dino.png',
+					url: 'img/level1/dinoRight.png',
 					x: 10,
 					y: 100,
 					width: 10,
@@ -113,7 +113,7 @@ var app = app || {};
 					velocity: 10,
 					toLeft: true,
 					duration: 9000,
-				}*/
+				}
 			]
 		},
 		{
@@ -129,7 +129,7 @@ var app = app || {};
 					velocity: 10,
 					duration: 0,
 				},
-				/*{
+				{
 					url: 'img/level2/sheep.png',
 					x: 700,
 					y: 300,
@@ -162,6 +162,18 @@ var app = app || {};
 					velocity: 10,
 					duration: 1800,
 					fly: true,
+				},
+				{
+					url: 'img/level2/butterflyLeft.png',
+					x: 750,
+					y: 60,
+					width: 50,
+					height: 50,
+					score: 20,
+					velocity: 10,
+					duration: 1800,
+					fly: true,
+					toLeft: true,
 				},
 				{
 					url: 'img/level2/elk.png',
@@ -208,7 +220,7 @@ var app = app || {};
 					toLeft: true,
 				},
 				{
-					url: 'img/level2/sheep.png',
+					url: 'img/level2/sheepRight.png',
 					x: 0,
 					y: 350,
 					width: 48,
@@ -219,7 +231,7 @@ var app = app || {};
 					fly: true,
 				},
 				{
-					url: 'img/level2/skunk.png',
+					url: 'img/level2/skunkRight.png',
 					x: 0,
 					y: 370,
 					width: 40,
@@ -285,7 +297,7 @@ var app = app || {};
 					toLeft: true,
 				},
 				{
-					url: 'img/level2/skunk.png',
+					url: 'img/level2/skunkRight.png',
 					x: 0,
 					y: 420,
 					width: 40,
@@ -392,7 +404,7 @@ var app = app || {};
 					toLeft: true,
 				},
 				{
-					url: 'img/level2/sheep.png',
+					url: 'img/level2/sheepRight.png',
 					x: 0,
 					y: 350,
 					width: 48,
@@ -403,7 +415,7 @@ var app = app || {};
 					fly: true,
 				},
 				{
-					url: 'img/level2/skunk.png',
+					url: 'img/level2/skunkRight.png',
 					x: 0,
 					y: 420,
 					width: 40,
@@ -433,7 +445,7 @@ var app = app || {};
 					score: 30,
 					velocity: 6,
 					duration: 14000,
-				},*/
+				},
 			]
 		},
 		{
